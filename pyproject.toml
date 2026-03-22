@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "gold_price_ds"
+version = "0.0.1"
+description = "A data science project to create a model that will predict future gold rates - either they go up or go down."
+authors = [
+  { name = "Srujan" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+requires-python = "~=3.14.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["gold_price_ds"]
+include = ["pyproject.toml", "gold_price_ds/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["gold_price_ds"]
+force-sort-within-sections = true
+
