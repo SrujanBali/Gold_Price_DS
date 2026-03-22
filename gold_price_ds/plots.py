@@ -4,7 +4,7 @@ from loguru import logger
 from tqdm import tqdm
 import typer
 
-from gold_prices_ds.config import FIGURES_DIR, PROCESSED_DATA_DIR
+from gold_price_ds.config import FIGURES_DIR, PROCESSED_DATA_DIR
 
 app = typer.Typer()
 
