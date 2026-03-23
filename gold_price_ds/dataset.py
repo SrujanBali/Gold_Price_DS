@@ -1,29 +1,12 @@
-from pathlib import Path
+import pandas as pd
+from gold_price_ds.config import RAW_DATA_DIR
 
-from loguru import logger
-from tqdm import tqdm
-import typer
+def load_raw_data(filename = "gold_price_forecasting_dataset.csv"):
+    #Load dataset.csv and does basic time series sorting and cleaning
+    file_path = RAW_DATA_DIR / filename
 
-from gold_price_ds.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
+    data = pd.read_csv(file_path, index_col="date")
+    data.index = pd.to_datetime(data.index)
+    data.sort_index(inplace=True)
 
-app = typer.Typer()
-
-
-@app.command()
-def main(
-    # ---- REPLACE DEFAULT PATHS AS APPROPRIATE ----
-    input_path: Path = RAW_DATA_DIR / "dataset.csv",
-    output_path: Path = PROCESSED_DATA_DIR / "dataset.csv",
-    # ----------------------------------------------
-):
-    # ---- REPLACE THIS WITH YOUR OWN CODE ----
-    logger.info("Processing dataset...")
-    for i in tqdm(range(10), total=10):
-        if i == 5:
-            logger.info("Something happened for iteration 5.")
-    logger.success("Processing dataset complete.")
-    # -----------------------------------------
-
-
-if __name__ == "__main__":
-    app()
+    return data
